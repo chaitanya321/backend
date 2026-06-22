@@ -13,7 +13,7 @@ from App.service.ra_workflow_service import RAWorkflowService
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    mcp_base_url = "https://research-mcp-server-32764074468.asia-south1.run.app/mcp"
+    mcp_base_url = "https://mcp2206-1055597081436.asia-south1.run.app/mcp"
     print(f"Connecting directly to remote HTTP MCP server at {mcp_base_url}...")
 
     app.state.mcp_tools = []
