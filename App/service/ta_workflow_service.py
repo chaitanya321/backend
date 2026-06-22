@@ -22,12 +22,11 @@ def should_continue(state: MessageState):
 
 class TAWorkflowService:
     def __init__(self):
-        agent = TeachingAssistantAgent()
         agent_builder = StateGraph(MessageState)
 
         # Building Workflow Nodes
-        agent_builder.add_node("bot_node", agent.call_llm)
-        agent_builder.add_node("tool_node", agent.tool_node)
+        agent_builder.add_node("bot_node", TeachingAssistantAgent().call_llm)
+        agent_builder.add_node("tool_node", TeachingAssistantAgent().tool_node)
 
         # Adding edges between the nodes
         agent_builder.add_edge(START, "bot_node")

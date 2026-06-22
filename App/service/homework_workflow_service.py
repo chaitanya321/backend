@@ -23,15 +23,13 @@ def should_continue(state: MessageState):
 
 class HomeworkWorkflowService:
     def __init__(self):
-        ta_agent = TeachingAssistantAgent()
-        q_agent = QuestionGenerationAgent()
         agent_builder = StateGraph(MessageState)
 
         # Building Workflow Nodes
-        agent_builder.add_node("answering_node", ta_agent.call_llm)
-        agent_builder.add_node("answering_tool_node", ta_agent.tool_node)
-        agent_builder.add_node("question_generation_node", q_agent.call_llm)
-        agent_builder.add_node("question_generation_tool_node", q_agent.tool_node)
+        agent_builder.add_node("answering_node", TeachingAssistantAgent().call_llm)
+        agent_builder.add_node("answering_tool_node", TeachingAssistantAgent().tool_node)
+        agent_builder.add_node("question_generation_node", QuestionGenerationAgent().call_llm)
+        agent_builder.add_node("question_generation_tool_node", QuestionGenerationAgent().tool_node)
 
         # Adding edges between the nodes
         agent_builder.add_edge(START, "question_generation_node")
